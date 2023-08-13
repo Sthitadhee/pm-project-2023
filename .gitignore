@@ -1,0 +1,6 @@
+venv
+note.txt
+.DS_Store
+archive
+assets
+actual_model/labelled_data  
