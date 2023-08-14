@@ -109,8 +109,8 @@ if __name__ == "__main__":
     # calculate the appropiate mu_theta5, mu_theta6 for pi_1
     theta5_, theta6_ = pi_1_params = get_mu_sd(theta1_, theta2_, 0.95, 0.01, 0.99, 0.99)
 
-    v = np.arange(5, 500, 5)
-    v = np.repeat(v, 5)/norm_factor
+    v = np.arange(5, 350, 5)
+    # v = np.repeat(v, 5)/norm_factor
 
     pi0s = create_pi0(theta3_, theta4_, v)
     pi1s = create_pi1(theta5_, theta6_, v)
@@ -122,28 +122,42 @@ if __name__ == "__main__":
     for i in range(pi0s.shape[0]):
         prob_array = [pi0s[i], (1 - pi0s[i]) * (1 - pi1s[i]), (1 - pi0s[i]) * pi1s[i]]
         possible_values = [0, probs[i], 1]
-        damage_estimates.append(np.random.choice(possible_values, p=prob_array))
-        # damage_estimates.append(np.argmax(possible_values))
+        # damage_estimate = possible_values[np.argmax(prob_array)]
+        damage_estimate = np.random.choice(possible_values, p=prob_array)
+        damage_estimates.append(damage_estimate)
 
-# prob_array = np.array([pi0, (1 - pi0) * (1 - pi1), (1 - pi0) * pi1])
-#       max_prob = np.argmax(prob_array)
-#       possible_values = np.array([0, np.random.beta(mu_obs * precision_mu, (1-mu_obs) * precision_mu), 1])
 
     damage_estimates = np.array(damage_estimates)
 
     figure, ax = plt.subplots()
-    ax.plot(v, damage_estimates, 'k-')
-    ax.set_xlabel('v', fontsize = 14)
-    ax.set_ylabel('mu', fontsize = 14)
+    # ax.plot(v, damage_estimates, 'k-')
+    ax.scatter(v, damage_estimates)
+    ax.set_xlabel('v in km/h', fontsize = 14)
+    ax.set_ylabel('y', fontsize = 14)
 
     # damage_estimates.size
     absolute_path = os.path.dirname(os.path.dirname(__file__))
-    path = f'{absolute_path}/assets/data/synthetic_data.csv'
+    path = f'{absolute_path}/assets/data/synthetic_data1.csv'
     print(path)
     df = pd.DataFrame({'x': v, 'y': damage_estimates})
-    # df.to_csv(path, index=False)
+    df.to_csv(path, index=False)
 
-    df.describe()
+    # df[v < 350].describe()
+
+    # path_empirical_data = f'{absolute_path}/actual_model/observations_bad.csv'
+    # empirical_data_df = pd.read_csv(path_empirical_data, index_col=False)
+    # empirical_data_df.describe()
+    # empirical_data_df = empirical_data_df.sort_values(by='x')
+    
+    # # path_empirical_data = f'{absolute_path}/assets/data/synthetic_bad_argmax.csv'
+    # # empirical_data_df = pd.read_csv(path_empirical_data, index_col=False)
+    # # empirical_data_df.describe()
+
+    # figure, ax = plt.subplots()
+    # ax.plot(empirical_data_df['x'], empirical_data_df['y'], 'k-')
+    # # ax.scatter(empirical_data_df['x'], empirical_data_df['y'])
+    # ax.set_xlabel('v in km/h', fontsize = 14)
+    # ax.set_ylabel('y', fontsize = 14)
 
 # - calculate pi0s and pi1s and mus
 # - calculate pi0s,  (1- pi0s) * pi1s, 1 - pi0s - (1- pi0s)pi1s

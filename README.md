@@ -31,6 +31,8 @@
 │   ├── 2_DrawPosterior_test.py
 │   ├── 3_contribution.ipynb
 │   ├── 3_contribution.py
+│   ├── 4_contribution_GPU.ipynb
+│   ├── 5_zoib_regression_bayesian.ipynb
 │   ├── helper
 │   └── test.py
 └── venv
@@ -43,7 +45,15 @@
 -assets
     contains all the other data files generated or used for model implementation, data simulation, posterior plotting
 - src
-    contains all the source codes. 0_createSimulatedData.py contains the code for data simulation, 1_model.py contains the code for model implementation, 2_DrawPosterior_main.py is used for drawing the final posterior plots, 3_contribution.ipynb contains the source code for our contribution for the pm project, helper folder contains some utility files. 
+    contains all the source codes. 
+
+    - 0_createSimulatedData.py contains the code for data simulation
+    - 1_model.py contains the code for model implementation
+    - 2_DrawPosterior_main.py is used for drawing the final posterior plots
+    - <b>3_contribution.ipynb contains the source code for our contribution for the pm project </b>
+    - <b> 4_contribution_GPU.ipynb contains the same for the contribution.ipynb using the gpu </b>
+    - <b> 5_zoib_regression_bayesian.ipynb contains the colab version of the model implementation and data simulation </b>
+    - helper folder contains some utility files. 
 - venv 
     represents the virtual environment. Also, not found in github.
 

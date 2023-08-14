@@ -68,6 +68,7 @@ if __name__ == "__main__":
 
     absolute_path = os.path.dirname(os.path.dirname(__file__))
     emp_data_file_path = f'{absolute_path}/assets/data/observations_{building_type}.csv'
+    # emp_data_file_path = f'{absolute_path}/assets/data/synthetic_data1.csv'
 
     df = pd.read_csv(emp_data_file_path)
     v = df['x'].to_numpy()
