@@ -3,7 +3,8 @@
 A probabilistic modelling project implementing Bayesian updating of building vulnerability curves for hurricane damage assessment, with a CNN-based damage classification extension using satellite imagery.
 
 **Course:** Probabilistic Modeling, Prof. Dr. Burkhardt Funk — Leuphana Universität Lüneburg  
-**Group:** Genesis — Indraneel Dhulipala, Sanchit Bhavsar, Sthitadhee Panthadas
+**Group:** Genesis — Indraneel Dhulipala, Sanchit Bhavsar, Sthitadhee Panthadas  
+**Presentation:** <a href="resources/Final Presentation prob modelling 2023.pdf" target="_blank">Final Presentation (2023)</a>
 
 ---
 
