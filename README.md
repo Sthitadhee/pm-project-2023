@@ -103,9 +103,23 @@ To automate the expert annotation step, the group built a CNN pipeline using the
 | 2 | Major Damage | Partial wall/roof collapse, surrounded by water/mud |
 | 3 | Destroyed | Completely collapsed, scorched, or no longer present |
 
+### Data Pipeline
+
+Pre- and post-disaster satellite images from xBD are paired with JSON polygon annotations. The pipeline extracts individual building footprints, assigns damage labels, and prepares an 80/20 train/test split via CSV.
+
+<img src="resources/data-modelling-cnn.png" alt="CNN data pipeline: xBD dataset → data visualisation → image preprocessing → ImageDataGenerator with 80/20 split" width="700"/>
+
+**Image preprocessing** generates binary masks from pre-disaster satellite images to isolate building footprints before feeding them into the CNN.
+
+<img src="resources/data-masking.png" alt="Mask generation: original pre-disaster aerial image alongside its binary building footprint mask" width="650"/>
+
+### Architectures
+
 **Two architectures explored:**
 - **ResNet50 (transfer learning):** Custom CNN branch (4096) + ResNet50 (8192) concatenated → Dense layers → 4-class softmax
 - **Sequential CNN:** Conv2D × 3 + BatchNorm + Dropout → Dense → 4-class softmax (128×128 input)
+
+<img src="resources/Squential-cnn.png" alt="Sequential CNN architecture: Conv2D blocks with MaxPooling and BatchNormalization feeding into Dense output layer" width="700"/>
 
 **Result:** Sequential CNN achieved ~75.7% accuracy with minimal overfitting (train/val accuracy nearly identical over 30 epochs).
 
